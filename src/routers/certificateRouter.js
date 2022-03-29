@@ -4,9 +4,8 @@ import { login_required } from "../middlewares/login_required";
 import { CertificateService } from "../services/certificateService";
 
 const certificateRouter = Router();
-certificateRouter.use(login_required);
 
-certificateRouter.post("/certificate/create", async function (req, res, next) {
+certificateRouter.post("/certificate/create", login_required, async function (req, res, next) {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -34,7 +33,7 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
   }
 });
 
-certificateRouter.get("/certificates/:id", async function (req, res, next) {
+certificateRouter.get("/certificates/:id", login_required, async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const certificateId = req.params.id;
@@ -54,7 +53,7 @@ certificateRouter.get("/certificates/:id", async function (req, res, next) {
   }
 });
 
-certificateRouter.put("/certificates/:id", async function (req, res, next) {
+certificateRouter.put("/certificates/:id", login_required, async function (req, res, next) {
   try {
     // URI로부터 수상 데이터 id를 추출함.
     const certificateId = req.params.id;
@@ -82,7 +81,7 @@ certificateRouter.put("/certificates/:id", async function (req, res, next) {
   }
 });
 
-certificateRouter.delete("/certificates/:id", async function (req, res, next) {
+certificateRouter.delete("/certificates/:id", login_required, async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const certificateId = req.params.id;
@@ -104,6 +103,7 @@ certificateRouter.delete("/certificates/:id", async function (req, res, next) {
 
 certificateRouter.get(
   "/certificatelist/:user_id",
+  login_required,
   async function (req, res, next) {
     try {
       // 특정 사용자의 전체 자격증 목록을 얻음

@@ -4,9 +4,8 @@ import { login_required } from "../middlewares/login_required";
 import { ProjectService } from "../services/projectService";
 
 const projectRouter = Router();
-projectRouter.use(login_required);
 
-projectRouter.post("/project/create", async function (req, res, next) {
+projectRouter.post("/project/create", login_required, async function (req, res, next) {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -36,7 +35,7 @@ projectRouter.post("/project/create", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projects/:id", async function (req, res, next) {
+projectRouter.get("/projects/:id", login_required, async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const projectId = req.params.id;
@@ -54,7 +53,7 @@ projectRouter.get("/projects/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.put("/projects/:id", async function (req, res, next) {
+projectRouter.put("/projects/:id", login_required, async function (req, res, next) {
   try {
     // URI로부터 수상 데이터 id를 추출함.
     const projectId = req.params.id;
@@ -80,7 +79,7 @@ projectRouter.put("/projects/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.delete("/projects/:id", async function (req, res, next) {
+projectRouter.delete("/projects/:id", login_required, async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const projectId = req.params.id;
@@ -98,7 +97,7 @@ projectRouter.delete("/projects/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projectlist/:user_id", async function (req, res, next) {
+projectRouter.get("/projectlist/:user_id", login_required, async function (req, res, next) {
   try {
     // 특정 사용자의 전체 프로젝트 목록을 얻음
     // @ts-ignore

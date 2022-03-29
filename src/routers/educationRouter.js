@@ -4,9 +4,8 @@ import { login_required } from "../middlewares/login_required";
 import { EducationService } from "../services/educationService";
 
 const educationRouter = Router();
-educationRouter.use(login_required);
 
-educationRouter.post("/education/create", async function (req, res, next) {
+educationRouter.post("/education/create", login_required, async function (req, res, next) {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -34,7 +33,7 @@ educationRouter.post("/education/create", async function (req, res, next) {
   }
 });
 
-educationRouter.get("/educations/:id", async function (req, res, next) {
+educationRouter.get("/educations/:id", login_required,  async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const educationId = req.params.id;
@@ -52,7 +51,7 @@ educationRouter.get("/educations/:id", async function (req, res, next) {
   }
 });
 
-educationRouter.put("/educations/:id", async function (req, res, next) {
+educationRouter.put("/educations/:id", login_required, async function (req, res, next) {
   try {
     // URI로부터 교육 데이터 id를 추출함.
     const educationId = req.params.id;
@@ -80,7 +79,7 @@ educationRouter.put("/educations/:id", async function (req, res, next) {
   }
 });
 
-educationRouter.delete("/educations/:id", async function (req, res, next) {
+educationRouter.delete("/educations/:id", login_required, async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const educationId = req.params.id;
@@ -98,7 +97,7 @@ educationRouter.delete("/educations/:id", async function (req, res, next) {
   }
 });
 
-educationRouter.get("/educationlist/:user_id", async function (req, res, next) {
+educationRouter.get("/educationlist/:user_id", login_required, async function (req, res, next) {
   try {
     // 특정 사용자의 전체 교육 목록을 얻음
     // @ts-ignore

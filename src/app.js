@@ -14,7 +14,7 @@ app.use(cors());
 
 // react의 build 폴더 연결
 import path from "path";
-app.use(express.static(path.join(__dirname, "front", "build")))
+app.use(express.static(path.join(__dirname, "../front", "build")))
 
 // express 기본 제공 middleware
 // express.json(): POST 등의 요청과 함께 오는 json형태의 데이터를 인식하고 핸들링할 수 있게 함.
@@ -35,7 +35,7 @@ app.use(errorMiddleware);
 
 // 연결된 build 폴더의 index.html 파일을 화면에 띄우도록 함.
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "front", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "../front", "build", "index.html"));
 });
 
 export { app };

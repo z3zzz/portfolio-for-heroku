@@ -8,6 +8,9 @@
     "test": "jest --setupFiles dotenv/config",
     "heroku-postbuild": "cd front && yarn install --only=dev && yarn install && yarn build"
   },
+  "engines":{
+    "node": "16.14.0"	
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/"

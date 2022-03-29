@@ -59,8 +59,3 @@ yarn start
 - src/middlewares:
   - jwt토큰을 다루는 미들웨어인 login_required.js
   - 학습 편의를 위해 일괄 http 400 코드로 에러를 변환하는 에러핸들러인 errorMiddleware.js
-- API-REST:
-  - VSCode 익스텐션 중 rest-client를 사용해서 api테스팅할 때 쓰는 파일들입니다.
-- **tests**:
-  - JEST 테스트파일입니다. MVP당 5개의 테스트, 총 25개 테스트가 있습니다.
-  - `yarn test`로 실행합니다.
